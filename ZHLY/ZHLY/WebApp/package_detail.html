@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta name="screen-orientation" content="portrait"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <title>套票详情</title>
+    <link rel="stylesheet" type="text/css" href="jquery-weui.css" />
+    <link rel="stylesheet" type="text/css" href="calendar-price.css" />
+    <link rel="stylesheet" type="text/css" href="weui.css" />
+    <link rel="stylesheet" type="text/css" href="common.css" />
+</head>
+<body>
+<div class="webLeft"></div>
+<div id="app" v-cloak="">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" :style="{'background-image': 'url('+ detail.pt_image +')','background-size': 'cover'}"></div>
+        </div>
+    </div>
+    <div class="ticket-title">{{ detail.pt_name }}</div>
+    <div class="weui-cells ticket-price">
+        <a class="weui-cell weui-cell_access" href="javascript:;" @click="getTicketNotice">
+            <div class="weui-cell__bd">
+                <p><em class="price-unit">￥</em><em class="price">{{ detail.pt_sale_price }}</em><em class="unit">/份</em></p>
+            </div>
+            <div class="weui-cell__ft">购买须知</div>
+        </a>
+    </div>
+
+    <div class="item-box">
+        <div class="item-title">
+            <em class="line"></em>
+            选择游玩时间
+        </div>
+        <div class="item-content no-padding">
+            <div id="price-calendar" style="height: auto"></div>
+        </div>
+    </div>
+
+    <div class="weui-cells alone">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>使用日期</p>
+            </div>
+            <div class="weui-cell__ft">{{ date | empty('未选择')}}<span v-if="date" style="margin-left: 8px">当日有效</span></div>
+        </div>
+    </div>
+
+    <x-number title="选择数量" :value="number" :min="1" @on-change="change" ></x-number>
+
+    <div class="item-box">
+        <div class="item-title">
+            <em class="line"></em>
+            套餐详情
+        </div>
+        <div class="item-content" v-html="detail.pt_intro"></div>
+    </div>
+    <div class="height-56"></div>
+    <div class="book-box clearfix">
+        <div class="book-price" v-if="nowPrice > 0">
+            <em>总价：¥</em>{{ nowPrice * number }}
+        </div>
+        <div class="book-price" v-else="">
+            请选择游玩时间
+        </div>
+        <a href="javascript:;" :class="nowPrice <= 0 ? 'disabled' : ''" class="book-btn" @click="goToPay($event)">立即预订</a>
+    </div>
+</div>
+<div class="webRight"></div>
+<script type="application/javascript" src="vue.js"></script>
+<script type="application/javascript" src="jquery_2_1_4.js"></script>
+<script type="application/javascript" src="jquery-weui.js"></script>
+<script type="application/javascript" src="calendar-price.js"></script>
+<script type="application/javascript" src="common.js"></script>
+<script>
+    var XNumber = Vue.extend({
+        template: '<div class="weui-cells alone">\n' +
+        '  <div class="weui-cell">\n' +
+        '    <div class="weui-cell__bd">\n' +
+        '      <p>{{ title }}</p>\n' +
+        '    </div>\n' +
+        '<div class="weui_cell_ft clearfix" v-show="!readonly">\n'+
+        '<a @click="sub" class="number-selector number-selector-sub":class="{\'number-disabled\':disabledMin}">-</a>\n'+
+        '<input v-model.number="currentValue" class="number-input" :style="{width: width+\'px\'}" number :readonly="fillable" pattern="[0-9]*"/>\n'+
+        '<a @click="add" class="number-selector number-selector-plus" :class="{\'number-disabled\':disabledMax}">+</a>\n'+
+        '</div>\n'+
+        '  </div>\n' +
+        '</div>',
+        props: {
+            min: Number,
+            max: Number,
+            step: {
+                type: Number,
+                default: 1
+            },
+            value: {
+                type: Number,
+                default: 1
+            },
+            title: String,
+            readonly: Boolean,
+            fillable: {
+                type: Boolean,
+                default: true
+            },
+            width: {
+                type: Number,
+                default: 40
+            }
+        },
+        data:function(){
+            return {
+                currentValue: 0
+            }
+        },
+        created: function() {
+            this.currentValue = this.value
+        },
+        computed: {
+            disabledMin: function() {
+                return typeof this.min === 'undefined' ? false : this.currentValue <= this.min
+            },
+            disabledMax: function() {
+                return typeof this.max === 'undefined' ? false : this.currentValue >= this.max
+            }
+        },
+        watch: {
+            currentValue: function(newValue, old) {
+                if (this.min && this.value < this.min) {
+                    this.currentValue = this.min
+                }
+                if (this.max && this.value > this.max) {
+                    this.currentValue = this.max
+                }
+                this.$emit('on-change', this.currentValue)
+            }
+        },
+        methods: {
+            add: function() {
+                if (!this.disabledMax) {
+                    this.currentValue += this.step
+                }
+            },
+            sub: function() {
+                if (!this.disabledMin) {
+                    this.currentValue -= this.step
+                }
+            }
+        }
+    });
+    Vue.component('XNumber', XNumber)
+    var vue = new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                introName: ['【购买须知】', '【使用须知】', '【退票须知】'],
+                setting: '',
+                detail: '',
+                price:  '',
+                date: '',
+                nowPrice: 0,
+                number: 1
+            }
+        },
+        mounted: function () {},
+        filters: common.filters,
+        methods: {
+            /**
+             * 请求套票详情
+             * @param param.sess_id 用户ID
+             * @param param.ticket_id 门票ID
+             * @param param.channel_id 渠道ID
+             * @param param.API_URL 接口请求地址
+             */
+            getDetail: function ( param ) {
+                var self = this
+                if(typeof param !== 'object') return false
+                 common.DataGet(param.API_URL,{
+                    biz_pt_id: param.biz_pt_id
+                }, function(data) {
+                     if(data.code === 200) {
+                         self.$set(self, 'detail', data.data);
+                         self.$set(self, 'price', data.data.date_list)
+                         self.setCalendarPrice()
+                     }
+                });
+            },
+            /**
+             * 设置价格日历
+             */
+            setCalendarPrice: function () {
+                var self = this
+                // if(typeof self.price.channel_calendar_price === 'string') {
+                //     self.price.channel_calendar_price = JSON.parse(self.price.channel_calendar_price)
+                // }
+                $.CalendarPrice({
+                    el: '#price-calendar',
+                    optional: self.price,
+                    hideFooterButton: true,
+                    config: [{
+                        key: 'price',
+                        name: '¥'
+                    }],
+                    show: [{
+                        key: 'price',
+                        name: '¥'
+                    }],
+                    // 确认按钮
+                    everyday: function (data, day) {
+                        self.date = day
+                        self.nowPrice = self.detail.pt_sale_price;
+                    },
+                })
+            },
+            /**
+             * 点击购买须知弹窗
+             */
+            getTicketNotice: function () {
+                var self = this,
+                    content = ''
+                $.each(['pt_buy_intro', 'pt_use_intro', 'pt_refund_intro'], function (i, item) {
+                    if(item[i] !== '') {
+                        content += '<p style="margin-bottom: 8px">'+ self.introName[i] +'：'+ self.detail[item] +'</p>'
+                    }
+                })
+                var notice = '<div style="text-align: left;max-height: 420px;overflow: auto">'+ content +'</div>'
+                $.alert(notice,'购票须知')
+            },
+            /**
+             * 更改购买数量
+             * @param val
+             */
+            change: function (val) {
+                var self = this
+                if(val > 0) {
+                    self.$set(self, 'number', val)
+                }
+            },
+            /**
+             * 立即预订
+             * @param event
+             * @returns {boolean}
+             */
+            goToPay: function (event) {
+                var self = this
+                if($(event.target).hasClass('disabled')) return false
+                if(common.checkBrower().android) {
+                    android.getPackageInfo(self.number, self.date, self.detail.pt_name)
+                    return false
+                }
+                if(common.checkBrower().ios) {
+                    window.webkit.messageHandlers.ios.postMessage({
+                        number: self.number,
+                        date: self.date
+                    })
+                    return false
+                }
+            }
+        },
+        watch: {
+            /**
+             * 检查setting是否传值
+             * @param val
+             */
+            setting: function (val) {
+                var self = this
+                if(val && typeof val === 'object') {
+                    self.getDetail(val)
+                }
+            }
+        }
+    })
+    /*getSetting({
+       "API_URL" : "http://192.168.1.21:8081/tickets/detail",
+       "biz_pt_id" : "83"
+    });*/
+    function getSetting(name) {
+        vue.$set(vue, 'setting', name)
+    }
+</script>
+</body>
+</html>

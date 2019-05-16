@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="HomeHotelRoomCell" id="KGk-i7-Jjw" userLabel="HomeShopBaseCell" customClass="HomeHotelRoomCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AoE-Qx-aYK" userLabel="Line">
+                        <rect key="frame" x="15" y="99" width="305" height="1"/>
+                        <color key="backgroundColor" red="0.8901960784313725" green="0.8901960784313725" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="gIn-hC-quM"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="马文化博物馆门票" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W6l-Su-ARs">
+                        <rect key="frame" x="15" y="20" width="250" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fvK-XQ-s26">
+                        <rect key="frame" x="245" y="57" width="60" height="26"/>
+                        <color key="backgroundColor" red="0.89560574293136597" green="0.66116368770599365" blue="0.39944767951965332" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="76h-s4-HTa"/>
+                            <constraint firstAttribute="height" constant="26" id="uk0-yE-Aex"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <state key="normal" title="购买">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <connections>
+                            <action selector="bookBtnTap:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="qjm-Ve-YYN"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7YZ-yc-foT">
+                        <rect key="frame" x="15" y="46" width="41" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.89560574293136597" green="0.66116368770599365" blue="0.39944767951965332" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQW-z1-LRR">
+                        <rect key="frame" x="15" y="69" width="61" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="fxW-HT-QTh"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <inset key="titleEdgeInsets" minX="0.0" minY="-13" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" title="购买须知 &gt;">
+                            <color key="titleColor" red="0.59993284940719604" green="0.60003870725631714" blue="0.5999261736869812" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="buyNoticeAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="cpz-xa-ggL"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yBy-56-Dwa">
+                        <rect key="frame" x="275" y="19" width="30" height="28"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="28" id="FuB-aG-oAy"/>
+                            <constraint firstAttribute="width" constant="30" id="WCh-Ia-KAU"/>
+                        </constraints>
+                        <state key="normal" image="购物车"/>
+                        <connections>
+                            <action selector="addShoppingCarBtnTap:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="UTC-vR-0ON"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="fvK-XQ-s26" firstAttribute="top" secondItem="yBy-56-Dwa" secondAttribute="bottom" constant="10" id="BA4-ye-Ecm"/>
+                    <constraint firstItem="7YZ-yc-foT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="CK2-Ii-m6e"/>
+                    <constraint firstAttribute="trailing" secondItem="yBy-56-Dwa" secondAttribute="trailing" constant="15" id="E3W-HD-Gbr"/>
+                    <constraint firstItem="aQW-z1-LRR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Kpk-Ee-bJw"/>
+                    <constraint firstItem="AoE-Qx-aYK" firstAttribute="top" secondItem="aQW-z1-LRR" secondAttribute="bottom" id="RQk-mc-Kzu"/>
+                    <constraint firstItem="7YZ-yc-foT" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="5" id="S4r-0B-iKS"/>
+                    <constraint firstAttribute="trailing" secondItem="fvK-XQ-s26" secondAttribute="trailing" constant="15" id="VJe-zg-IZN"/>
+                    <constraint firstItem="W6l-Su-ARs" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="anI-7T-W2S"/>
+                    <constraint firstItem="W6l-Su-ARs" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="fIG-a2-aU5"/>
+                    <constraint firstAttribute="trailing" secondItem="AoE-Qx-aYK" secondAttribute="trailing" id="fJJ-5Q-022"/>
+                    <constraint firstItem="AoE-Qx-aYK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="gZH-fO-MzQ"/>
+                    <constraint firstItem="AoE-Qx-aYK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="99" id="jH8-VM-0tq"/>
+                    <constraint firstItem="fvK-XQ-s26" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="20" id="kFs-M7-Pt6"/>
+                    <constraint firstAttribute="bottom" secondItem="AoE-Qx-aYK" secondAttribute="bottom" id="ur9-55-37G"/>
+                    <constraint firstItem="yBy-56-Dwa" firstAttribute="leading" secondItem="W6l-Su-ARs" secondAttribute="trailing" constant="10" id="w6O-fW-YVl"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="bookBtn" destination="fvK-XQ-s26" id="2i7-IG-tHC"/>
+                <outlet property="bookBtnCenterY" destination="kFs-M7-Pt6" id="BKO-7h-yk5"/>
+                <outlet property="nameLabel" destination="W6l-Su-ARs" id="WKO-PF-9VT"/>
+                <outlet property="priceLabel" destination="7YZ-yc-foT" id="xJg-u6-mJn"/>
+                <outlet property="shoppingCarBtn" destination="yBy-56-Dwa" id="voy-4a-wqe"/>
+            </connections>
+            <point key="canvasLocation" x="-259" y="-16"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="购物车" width="28" height="28"/>
+    </resources>
+</document>

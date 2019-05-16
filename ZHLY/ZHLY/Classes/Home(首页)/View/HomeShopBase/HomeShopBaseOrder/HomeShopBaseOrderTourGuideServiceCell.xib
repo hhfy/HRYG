@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="HomeShopBaseOrderTourGuideServiceCell" id="KGk-i7-Jjw" customClass="HomeShopBaseOrderTourGuideServiceCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AdB-gK-GGc" userLabel="Line">
+                        <rect key="frame" x="0.0" y="44.5" width="320" height="0.5"/>
+                        <color key="backgroundColor" red="0.8901960784313725" green="0.8901960784313725" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="JpK-dF-QB9"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="导游服务" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qka-dx-CRM">
+                        <rect key="frame" x="15" y="0.0" width="61.5" height="44.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kbh-up-zce">
+                        <rect key="frame" x="260" y="0.0" width="60" height="44.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="yGl-Io-IuY"/>
+                        </constraints>
+                        <state key="normal" title="图">
+                            <color key="titleColor" red="0.75686274509803919" green="0.75691080093383789" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
+                        <state key="selected">
+                            <color key="titleColor" red="0.89560574293136597" green="0.66116368770599365" blue="0.39944767951965332" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="selectBtnTap:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="15x-NR-BaO"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/次" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xds-0y-i7i">
+                        <rect key="frame" x="238" y="0.0" width="22" height="44.5"/>
+                        <fontDescription key="fontDescription" name=".PingFangSC-Regular" family=".PingFang SC" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DCn-6V-UDP">
+                        <rect key="frame" x="206.5" y="0.0" width="31.5" height="44.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.89560574289999995" green="0.6611636877" blue="0.39944767949999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="AdB-gK-GGc" secondAttribute="bottom" id="089-XY-e7a"/>
+                    <constraint firstItem="qka-dx-CRM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="0RM-88-pIi"/>
+                    <constraint firstItem="AdB-gK-GGc" firstAttribute="top" secondItem="qka-dx-CRM" secondAttribute="bottom" id="0w5-Ap-Ivz"/>
+                    <constraint firstItem="DCn-6V-UDP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="3ez-b8-BGN"/>
+                    <constraint firstAttribute="trailing" secondItem="AdB-gK-GGc" secondAttribute="trailing" id="7Id-dq-NI7"/>
+                    <constraint firstItem="kbh-up-zce" firstAttribute="leading" secondItem="xds-0y-i7i" secondAttribute="trailing" id="8bC-vP-sU8"/>
+                    <constraint firstItem="xds-0y-i7i" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="DDo-Ry-wyQ"/>
+                    <constraint firstItem="AdB-gK-GGc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="44.5" id="QUB-gd-R3w"/>
+                    <constraint firstItem="kbh-up-zce" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Y2u-U5-cEr"/>
+                    <constraint firstItem="qka-dx-CRM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="ZSE-io-NWj"/>
+                    <constraint firstItem="AdB-gK-GGc" firstAttribute="top" secondItem="xds-0y-i7i" secondAttribute="bottom" id="coc-ek-Vu5"/>
+                    <constraint firstItem="xds-0y-i7i" firstAttribute="leading" secondItem="DCn-6V-UDP" secondAttribute="trailing" id="fc9-36-0Q1"/>
+                    <constraint firstAttribute="trailing" secondItem="kbh-up-zce" secondAttribute="trailing" id="gyr-rF-kAR"/>
+                    <constraint firstItem="AdB-gK-GGc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="jR9-cl-tUb"/>
+                    <constraint firstItem="AdB-gK-GGc" firstAttribute="top" secondItem="DCn-6V-UDP" secondAttribute="bottom" id="lXK-f1-ZVb"/>
+                    <constraint firstItem="AdB-gK-GGc" firstAttribute="top" secondItem="kbh-up-zce" secondAttribute="bottom" id="mjf-wb-lLq"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="priceLabel" destination="DCn-6V-UDP" id="mRx-wb-u9l"/>
+                <outlet property="selectBtn" destination="kbh-up-zce" id="wWQ-Ft-x87"/>
+            </connections>
+            <point key="canvasLocation" x="25" y="51.5"/>
+        </tableViewCell>
+    </objects>
+</document>

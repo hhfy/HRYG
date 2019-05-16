@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta name="screen-orientation" content="portrait"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <title>商品详情</title>
+    <link rel="stylesheet" type="text/css" href="jquery-weui.css" />
+    <link rel="stylesheet" type="text/css" href="calendar-price.css" />
+    <link rel="stylesheet" type="text/css" href="weui.css" />
+    <link rel="stylesheet" type="text/css" href="common.css" />
+</head>
+<body>
+<div class="webLeft"></div>
+<div id="app" v-cloak="">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" :style="{'background-image': 'url('+ detail.ticket_image +')','background-size': 'cover'}"></div>
+        </div>
+    </div>
+    <div class="ticket-title">{{ detail.zwm }}</div>
+    <div class="ticket-sub">手提一颗玫瑰香 清新兰香 清甜多汁</div>
+    <div class="title-sub"></div>
+    <div class="weui-cells ticket-price">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p><em class="price-unit color-e4a766">￥</em><em class="price color-e4a766">{{ price.ticket_price | empty(detail.ticket_price)}}</em></p>
+            </div>
+            <div class="weui-cell__ft"></div>
+        </div>
+    </div>
+
+    <div class="weui-cells specification">
+        <a class="weui-cell weui-cell_access" href="javascript:;" >
+            <div class="weui-cell__bd">
+                <p><em class="choose">选择</em><em class="unit">请选择规格</em></p>
+            </div>
+            <div class="weui-cell__ft"></div>
+        </a>
+    </div>
+
+    <div class="item-box">
+        <div class="item-title">
+            <em class="line"></em>
+            商品详情
+        </div>
+        <div class="item-content" v-html="detail.ticket_detail"></div>
+    </div>
+    <div class="height-56"></div>
+    <div class="book-box good-detail clearfix">
+        <a href="javascript:;" class="book-btn shop-car" @click="goToShopCar($event)">加入购物车</a>
+        <a href="javascript:;" class="book-btn to-buy" @click="goToPay($event)">立即购买</a>
+    </div>
+</div>
+<div class="webRight"></div>
+<script type="application/javascript" src="vue.js"></script>
+<script type="application/javascript" src="jquery_2_1_4.js"></script>
+<script type="application/javascript" src="jquery-weui.js"></script>
+<script type="application/javascript" src="calendar-price.js"></script>
+<script type="application/javascript" src="common.js"></script>
+<script>
+    var XNumber = Vue.extend({
+        template: '<div class="weui-cells alone">\n' +
+        '  <div class="weui-cell">\n' +
+        '    <div class="weui-cell__bd">\n' +
+        '      <p>{{ title }}</p>\n' +
+        '    </div>\n' +
+        '<div class="weui_cell_ft clearfix" v-show="!readonly">\n'+
+        '<a @click="sub" class="number-selector number-selector-sub":class="{\'number-disabled\':disabledMin}">-</a>\n'+
+        '<input v-model.number="currentValue" class="number-input" :style="{width: width+\'px\'}" number :readonly="!fillable" pattern="[0-9]*"/>\n'+
+        '<a @click="add" class="number-selector number-selector-plus" :class="{\'number-disabled\':disabledMax}">+</a>\n'+
+        '</div>\n'+
+        '  </div>\n' +
+        '</div>',
+        props: {
+            min: Number,
+            max: Number,
+            step: {
+                type: Number,
+                default: 1
+            },
+            value: {
+                type: Number,
+                default: 1
+            },
+            title: String,
+            readonly: Boolean,
+            fillable: {
+                type: Boolean,
+                default: true
+            },
+            width: {
+                type: Number,
+                default: 50
+            }
+        },
+        data:function(){
+            return {
+                currentValue: 0
+            }
+        },
+        created: function() {
+            this.currentValue = this.value
+        },
+        computed: {
+            disabledMin: function() {
+                return typeof this.min === 'undefined' ? false : this.currentValue <= this.min
+            },
+            disabledMax: function() {
+                return typeof this.max === 'undefined' ? false : this.currentValue >= this.max
+            }
+        },
+        watch: {
+            currentValue: function(newValue, old) {
+                if (this.min && this.value < this.min) {
+                    this.currentValue = this.min
+                }
+                if (this.max && this.value > this.max) {
+                    this.currentValue = this.max
+                }
+                this.$emit('on-change', this.currentValue)
+            }
+        },
+        methods: {
+            add: function() {
+                if (!this.disabledMax) {
+                    this.currentValue += this.step
+                }
+            },
+            sub: function() {
+                if (!this.disabledMin) {
+                    this.currentValue -= this.step
+                }
+            }
+        }
+    });
+    Vue.component('XNumber', XNumber)
+    var vue = new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                introName: ['购买须知', '退票须知', '费用包含', '费用不包含'],
+                setting: '',
+                detail: '',
+                price:  '',
+                date: '',
+                nowPrice: 0,
+                totalPrice: 0,
+                number: 1
+            }
+        },
+        mounted: function () {},
+        filters: common.filters,
+        methods: {
+            /**
+             * 请求套票详情
+             * @param sess_id 用户ID
+             * @param wlbm 门票ID
+             * @param API_URL 接口请求地址
+             */
+            getDetail: function (sess_id, wlbm, API_URL) {
+                var self = this
+                common.DataPost(API_URL, {
+                    'sess_id': sess_id,
+                    'wlbm': wlbm
+                }, function (data) {
+                    if(data.code === 200) {
+                        self.$set(self, 'detail', data.data)
+                    }
+                })
+            },
+            setCalendarPrice: function () {
+
+            },
+            change: function (val) {
+                var self = this
+                if(val > 0) {
+                    self.$set(self, 'number', val)
+                }
+            },
+            goToPay: function (event) {
+                var self = this
+                if($(event.target).hasClass('disabled')) return false
+                if(common.checkBrower().android) {
+                    android.buySoon(self.detail.wlbm)
+                    return false
+                }
+                if(common.checkBrower().ios) {
+                    window.webkit.messageHandlers.ios.postMessage({
+                        wlbm: self.detail.wlbm,
+                        type: 'buy'
+                    })
+                    return false
+                }
+            },
+            goToShopCar: function () {
+                var self = this
+                if(common.checkBrower().android) {
+                    android.inCar(self.detail.wlbm)
+                    return false
+                }
+                if(common.checkBrower().ios) {
+                    window.webkit.messageHandlers.ios.postMessage({
+                        wlbm: self.detail.wlbm,
+                        type: 'shopCar'
+                    })
+                    return false
+                }
+            }
+        },
+        watch: {
+            setting: function (val) {
+                var self = this
+                if(val.sess_id) {
+                    // $.alert(JSON.stringify(val))
+                    self.getDetail(val.sess_id, val.wlbm, val.url)
+                }
+            }
+        }
+    })
+    // getSetting('ckjc3m3rm4ibvqe5injhds6je4',4,'http://192.168.1.21:8081/home/goods/goods/detail')
+
+    /**
+     * 客户端传值
+     * @param sess_id
+     * @param wlbm
+     * @param url
+     */
+    function getSetting(sess_id, wlbm, url) {
+        vue.$set(vue, 'setting', {sess_id: sess_id,wlbm: wlbm,url: url})
+    }
+</script>
+</body>
+</html>

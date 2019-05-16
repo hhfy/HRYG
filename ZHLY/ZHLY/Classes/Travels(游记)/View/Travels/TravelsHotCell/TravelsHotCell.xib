@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TravelsHotCell" id="KGk-i7-Jjw" customClass="TravelsHotCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="210"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="209.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2ra-8W-nLd" userLabel="Line">
+                        <rect key="frame" x="0.0" y="209" width="320" height="0.5"/>
+                        <color key="backgroundColor" red="0.8901960784313725" green="0.8901960784313725" blue="0.8901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="Pwq-Nl-iAn"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="热门场馆" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D9c-bk-HcU">
+                        <rect key="frame" x="15" y="15" width="61.5" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="5ag-rp-6JR">
+                        <rect key="frame" x="0.0" y="48" width="320" height="161"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="DoB-wd-9El">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <connections>
+                            <outlet property="dataSource" destination="KGk-i7-Jjw" id="Nw9-MD-xrf"/>
+                            <outlet property="delegate" destination="KGk-i7-Jjw" id="68m-jM-8Q5"/>
+                        </connections>
+                    </collectionView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="D9c-bk-HcU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="1SK-dg-Fp5"/>
+                    <constraint firstAttribute="trailing" secondItem="5ag-rp-6JR" secondAttribute="trailing" id="7Fa-P3-rey"/>
+                    <constraint firstItem="5ag-rp-6JR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="JGy-bu-J64"/>
+                    <constraint firstItem="2ra-8W-nLd" firstAttribute="top" secondItem="5ag-rp-6JR" secondAttribute="bottom" id="JOd-b2-YL2"/>
+                    <constraint firstItem="5ag-rp-6JR" firstAttribute="top" secondItem="D9c-bk-HcU" secondAttribute="bottom" constant="15" id="JdH-0F-loh"/>
+                    <constraint firstItem="2ra-8W-nLd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="209" id="NDZ-jl-ba8"/>
+                    <constraint firstAttribute="bottom" secondItem="2ra-8W-nLd" secondAttribute="bottom" id="WnR-f0-YAU"/>
+                    <constraint firstItem="2ra-8W-nLd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="gCa-sh-Aqh"/>
+                    <constraint firstItem="D9c-bk-HcU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="u4c-3K-lLx"/>
+                    <constraint firstAttribute="trailing" secondItem="2ra-8W-nLd" secondAttribute="trailing" id="yp1-tn-S5g"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="itemCollectionView" destination="5ag-rp-6JR" id="drt-CY-TmZ"/>
+                <outlet property="titleNameLabel" destination="D9c-bk-HcU" id="z9A-Om-Vhm"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

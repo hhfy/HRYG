@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TravelsHotItemCell" id="gTV-IL-0wX" customClass="TravelsHotItemCell">
+            <rect key="frame" x="0.0" y="0.0" width="130" height="150"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="130" height="150"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" highlighted="YES" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sDh-ew-EOV">
+                        <rect key="frame" x="15" y="0.0" width="100" height="100"/>
+                        <color key="backgroundColor" red="0.87058823529411766" green="0.87058823529411766" blue="0.87058823529411766" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="sDh-ew-EOV" secondAttribute="height" multiplier="1:1" id="EEj-2U-LAd"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="马文化博物馆" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gf4-c0-Pa0">
+                        <rect key="frame" x="15" y="105" width="100" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="hLg-61-ryK"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9999人游玩过" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yCC-Sn-nok">
+                        <rect key="frame" x="15" y="127" width="100" height="13.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="13.5" id="aMB-Go-g59"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" red="0.52935183048248291" green="0.52944636344909668" blue="0.52934587001800537" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="UIU-AA-iOR">
+                        <rect key="frame" x="55" y="40" width="20" height="20"/>
+                    </activityIndicatorView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="sDh-ew-EOV" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="6Fo-19-wW3"/>
+                <constraint firstItem="UIU-AA-iOR" firstAttribute="centerX" secondItem="sDh-ew-EOV" secondAttribute="centerX" id="7d9-pm-hl4"/>
+                <constraint firstItem="Gf4-c0-Pa0" firstAttribute="top" secondItem="sDh-ew-EOV" secondAttribute="bottom" constant="5" id="ELb-52-Klt"/>
+                <constraint firstItem="Gf4-c0-Pa0" firstAttribute="trailing" secondItem="sDh-ew-EOV" secondAttribute="trailing" id="KaH-3j-D47"/>
+                <constraint firstItem="Gf4-c0-Pa0" firstAttribute="leading" secondItem="sDh-ew-EOV" secondAttribute="leading" id="QGX-4M-Bhx"/>
+                <constraint firstItem="UIU-AA-iOR" firstAttribute="centerY" secondItem="sDh-ew-EOV" secondAttribute="centerY" id="Re6-Xc-6H4"/>
+                <constraint firstItem="sDh-ew-EOV" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="T1I-dd-XNA"/>
+                <constraint firstAttribute="trailing" secondItem="sDh-ew-EOV" secondAttribute="trailing" constant="15" id="W14-Jq-W0y"/>
+                <constraint firstItem="yCC-Sn-nok" firstAttribute="trailing" secondItem="sDh-ew-EOV" secondAttribute="trailing" id="kO4-hS-gyj"/>
+                <constraint firstItem="yCC-Sn-nok" firstAttribute="top" secondItem="Gf4-c0-Pa0" secondAttribute="bottom" constant="5" id="oYj-SO-B31"/>
+                <constraint firstItem="yCC-Sn-nok" firstAttribute="leading" secondItem="sDh-ew-EOV" secondAttribute="leading" id="sXI-pl-Mei"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
+            <connections>
+                <outlet property="iconView" destination="sDh-ew-EOV" id="Esc-nH-Ykm"/>
+                <outlet property="loaddingVIew" destination="UIU-AA-iOR" id="74q-fo-KFb"/>
+                <outlet property="titleTextLabel" destination="Gf4-c0-Pa0" id="HH8-pS-B79"/>
+                <outlet property="visitorCountLabel" destination="yCC-Sn-nok" id="7Et-eW-Z6l"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+</document>

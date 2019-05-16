@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta name="screen-orientation" content="portrait"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <title>酒店详情</title>
+    <link rel="stylesheet" type="text/css" href="jquery-weui.css" />
+    <link rel="stylesheet" type="text/css" href="hotel-calendar.css" />
+    <link rel="stylesheet" type="text/css" href="weui.css" />
+    <link rel="stylesheet" type="text/css" href="common.css" />
+</head>
+<body>
+<div class="webLeft"></div>
+<div id="app" v-cloak="" v-if="detail">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" v-for="item in detail.images" :style="{'background-image': 'url('+ item +')','background-size': 'cover'}"></div>
+        </div>
+        <div class="swiper-pagination" v-if="detail.images.length > 1"></div>
+    </div>
+    <div class="ticket-title">{{ detail.ticket_name }}豪华标准间</div>
+    <div class="weui-cells ticket-price">
+        <a class="weui-cell weui-cell_access" href="javascript:;" @click="getTicketNotice">
+            <div class="weui-cell__bd">
+                <p><em class="price-unit">￥</em><em class="price">{{ detail.price }}</em></p>
+            </div>
+            <div class="weui-cell__ft"><!--购买须知--></div>
+        </a>
+    </div>
+
+    <div class="item-box">
+        <div class="item-title">
+            <em class="line"></em>
+            选择时间
+        </div>
+        <div class="item-content no-padding">
+            <div id="hotel-calendar"></div>
+        </div>
+    </div>
+
+    <div class="item-box">
+        <div class="item-title">
+            <em class="line"></em>
+            房间详情
+        </div>
+        <div class="item-content">
+            <ul class="toplist">
+                <li class="clearfix">
+                    <div><span>网路：</span>{{ detail.wifi | empty('--') }}</div>
+                    <div><span>窗户：</span>{{ detail.window | empty('--') }}</div>
+                </li>
+                <li class="clearfix">
+                    <div><span>床型：</span>{{ detail.bed_size | empty('--') }}m</div>
+                    <div><span>面积：</span>{{ detail.area | empty(0) }}㎡</div>
+                </li>
+                <li class="clearfix">
+                    <div><span>可住：</span>{{ detail.bed | empty('--') }}</div>
+                    <div><span>楼层：</span>{{ detail.floor | empty('--') }}</div>
+                </li>
+                <li class="clearfix">
+                    <div><span>卫浴：</span>{{ detail.bathroom | empty('--') }}</div>
+                    <div><span>房型：</span>{{ detail.room_name | empty('--') }}</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="height-56"></div>
+    <div class="book-box has-three-item clearfix">
+        <div class="book-price">
+            <em>总价：¥</em>{{ detail.price * day }}
+        </div>
+        <div class="shop-car-btn clearfix">
+            <a href="javascript:;" :class="day < 1 ? 'disabled' : ''" class="book-btn shop-car" @click="goToShopCar($event)">加入购物车</a>
+            <a href="javascript:;" :class="day < 1 ? 'disabled' : ''" class="book-btn" @click="goToPay($event)">立即预订</a>
+        </div>
+    </div>
+</div>
+<div class="webRight"></div>
+<script type="application/javascript" src="vue.js"></script>
+<script type="application/javascript" src="jquery_2_1_4.js"></script>
+<script type="application/javascript" src="jquery-weui.js"></script>
+<script type="application/javascript" src="swiper.js"></script>
+<script type="application/javascript" src="hotel-calendar.js"></script>
+<script type="application/javascript" src="common.js"></script>
+<script>
+
+    var vue = new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                introName: ['购买须知', '退票须知', '费用包含', '费用不包含'],
+                setting: '',
+                detail: '', // 房间详情
+                price:  '',
+                date: '',
+                start: '', // 入店时间
+                end: '', // 离店时间
+                day: '' // 入住天数
+            }
+        },
+        mounted: function () {},
+        filters: common.filters,
+        methods: {
+            /**
+             * 请求套票详情
+             * @param param.sess_id 用户ID
+             * @param param.room_id 房间ID
+             * @param param.API_URL 接口请求地址
+             */
+            getDetail: function ( param ) {
+                var self = this
+                if(typeof param !== 'object') return false
+                common.DataPost(param.API_URL, {
+                    'sess_id': param.sess_id,
+                    'room_id': param.room_id,
+                }, function (data) {
+                    if(data.code === 200) {
+                        self.$set(self, 'detail', data.data)
+                        self.$nextTick(function () {
+                            $(".swiper-container").swiper()
+                            self.setHotelCalendar()
+                        })
+                    }
+                })
+            },
+            /**
+             * 设置酒店日历
+             */
+            setHotelCalendar: function () {
+                var self = this
+                $('#hotel-calendar').calendarSwitch({
+                    selectors : {
+                        sections : "#hotel-calendar"
+                    },
+                    index: 4,      //展示的月份个数
+                    controlDay: true,//知否控制在daysnumber天之内，这个数值的设置前提是总显示天数大于90天
+                    daysnumber: "90",     //控制天数
+                    comeColor: "#e4a766",       //入住颜色
+                    outColor: "#e4a766",      //离店颜色
+                    comeoutColor: "rgba(228,167,102,.5)",        //入住和离店之间的颜色
+                    callback: function( param ){
+                        self.start = param.start
+                        self.end = param.end
+                        self.day = param.day
+                    }
+                });
+            },
+            /**
+             * 点击购买须知弹窗
+             */
+            getTicketNotice: function () {
+                var self = this,
+                    introContent = self.detail.ticket_intro_content,
+                    content = ''
+                $.each(introContent, function (i, item) {
+                    if(item[i] !== '') {
+                        content += '<p style="margin-bottom: 8px">'+ self.introName[i] +'：'+ introContent[i] +'</p>'
+                    }
+                })
+                var notice = '<div style="text-align: left;max-height: 420px;overflow: auto">'+ content +'</div>'
+                $.alert(notice,'购买须知')
+            },
+
+            /**
+             * 立即预订
+             * @param event
+             * @returns {boolean}
+             */
+            goToPay: function (event) {
+                var self = this
+                if($(event.target).hasClass('disabled')) return false
+                var param = {
+                    start: self.start,
+                    end: self.end,
+                    day: self.day,
+                }
+                if(common.checkBrower().android) {
+                    param.hotel_id = self.detail.hotel_id
+                    param.room_id = self.detail.room_id
+                    android.hotelBuySoon(JSON.stringify(param))
+                    return false
+                }
+                if(common.checkBrower().ios) {
+                    window.webkit.messageHandlers.ios.postMessage(param)
+                    return false
+                }
+            },
+            /**
+             * 加入购物车
+             */
+            goToShopCar: function (event) {
+                var self = this
+                if($(event.target).hasClass('disabled')) return false
+                var param = {
+                    start: self.start,
+                    end: self.end,
+                    day: self.day
+                }
+                if(common.checkBrower().android) {
+                    android.hotelInCar(JSON.stringify(param))
+                    return false
+                }
+                if(common.checkBrower().ios) {
+                    param.type = 'shopCar'
+                    window.webkit.messageHandlers.ios.postMessage(param)
+                    return false
+                }
+            }
+        },
+        watch: {
+            /**
+             * 检查setting是否传值
+             * @param val
+             */
+            setting: function (val) {
+                var self = this
+                if(val) {
+                    if(typeof val === 'object') {
+                        self.getDetail(val)
+                    }
+                }
+            }
+        }
+    })
+   /* getSetting({
+        "room_id":"1",
+        "sess_id":"16gt4b6cjvdcd9hb2ao5vfbn13",
+        "API_URL":"http://192.168.1.98:8081/home/hotel/room/detail"
+    })*/
+    function getSetting(name) {
+        vue.$set(vue, 'setting', name)
+    }
+</script>
+</body>
+</html>

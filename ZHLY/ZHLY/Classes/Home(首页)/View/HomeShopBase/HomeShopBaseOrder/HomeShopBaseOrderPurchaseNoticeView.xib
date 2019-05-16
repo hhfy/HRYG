@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="HomeShopBaseOrderPurchaseNoticeView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iJ6-hi-Zbe">
+                    <rect key="frame" x="0.0" y="255" width="320" height="45"/>
+                    <color key="backgroundColor" red="0.89560574293136597" green="0.66116368770599365" blue="0.39944767951965332" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" title="确定">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="confirmBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="hAb-9f-U2O"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jwh-Ht-k5u" userLabel="Line">
+                    <rect key="frame" x="0.0" y="254.5" width="320" height="0.5"/>
+                    <color key="backgroundColor" red="0.8901960784313725" green="0.8901960784313725" blue="0.8901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="ydX-K2-vli"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2sA-V0-SWy">
+                    <rect key="frame" x="15" y="20" width="290" height="234.5"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <connections>
+                        <outlet property="dataSource" destination="iN0-l3-epB" id="06U-he-kTT"/>
+                        <outlet property="delegate" destination="iN0-l3-epB" id="vva-VW-xzm"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="iJ6-hi-Zbe" firstAttribute="top" secondItem="Jwh-Ht-k5u" secondAttribute="bottom" id="106-rU-A0k"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Jwh-Ht-k5u" secondAttribute="bottom" constant="45" id="3Hj-7b-kR5"/>
+                <constraint firstItem="2sA-V0-SWy" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="CLl-wD-PKU"/>
+                <constraint firstItem="Jwh-Ht-k5u" firstAttribute="top" secondItem="2sA-V0-SWy" secondAttribute="bottom" id="KIW-qk-ugU"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="2sA-V0-SWy" secondAttribute="trailing" constant="15" id="Ph3-On-PdL"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="iJ6-hi-Zbe" secondAttribute="trailing" id="R0L-4Z-B18"/>
+                <constraint firstItem="iJ6-hi-Zbe" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="TDM-Re-Vui"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="iJ6-hi-Zbe" secondAttribute="bottom" id="WHr-T2-OYF"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Jwh-Ht-k5u" secondAttribute="trailing" id="XbW-Cd-F6f"/>
+                <constraint firstItem="2sA-V0-SWy" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="dLh-Ck-8L0"/>
+                <constraint firstItem="Jwh-Ht-k5u" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="rUd-db-hc2"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="contentTableView" destination="2sA-V0-SWy" id="mnh-g2-2YI"/>
+            </connections>
+        </view>
+    </objects>
+</document>

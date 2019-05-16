@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ServiceMyMsgFooterView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mf4-Fp-1oW" userLabel="Content View">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myMsgBgDown" translatesAutoresizingMaskIntoConstraints="NO" id="K29-QJ-JMe">
+                            <rect key="frame" x="15" y="0.0" width="345" height="40"/>
+                        </imageView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cUY-TD-fyE" userLabel="LIne">
+                            <rect key="frame" x="18" y="0.0" width="339" height="0.5"/>
+                            <color key="backgroundColor" red="0.8901960784313725" green="0.8901960784313725" blue="0.8901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="0.5" id="KdA-Ie-1sA"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="问题类型：餐饮" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0I-uS-weA">
+                            <rect key="frame" x="30" y="0.5" width="93" height="39.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" red="0.59993284940719604" green="0.60003870725631714" blue="0.5999261736869812" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017.10.03  21:34:07" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OLC-RG-HUd">
+                            <rect key="frame" x="220.5" y="0.5" width="124.5" height="39.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" red="0.59993284940719604" green="0.60003870725631714" blue="0.5999261736869812" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="p0I-uS-weA" firstAttribute="top" secondItem="cUY-TD-fyE" secondAttribute="bottom" id="4AE-Um-Kfx"/>
+                        <constraint firstAttribute="trailing" secondItem="K29-QJ-JMe" secondAttribute="trailing" constant="15" id="82r-P8-wUs"/>
+                        <constraint firstAttribute="bottom" secondItem="K29-QJ-JMe" secondAttribute="bottom" id="ELa-Ak-1WJ"/>
+                        <constraint firstItem="OLC-RG-HUd" firstAttribute="trailing" secondItem="K29-QJ-JMe" secondAttribute="trailing" constant="-15" id="KWO-41-kzb"/>
+                        <constraint firstAttribute="height" constant="40" id="TO4-da-dwr"/>
+                        <constraint firstAttribute="bottom" secondItem="p0I-uS-weA" secondAttribute="bottom" id="VrL-bv-qhO"/>
+                        <constraint firstAttribute="bottom" secondItem="OLC-RG-HUd" secondAttribute="bottom" id="bYh-Jf-l1l"/>
+                        <constraint firstItem="cUY-TD-fyE" firstAttribute="trailing" secondItem="K29-QJ-JMe" secondAttribute="trailing" constant="-3" id="e4h-ky-F3e"/>
+                        <constraint firstItem="p0I-uS-weA" firstAttribute="leading" secondItem="K29-QJ-JMe" secondAttribute="leading" constant="15" id="fdD-p4-hIV"/>
+                        <constraint firstItem="cUY-TD-fyE" firstAttribute="top" secondItem="K29-QJ-JMe" secondAttribute="top" id="hGu-cS-r1P"/>
+                        <constraint firstItem="K29-QJ-JMe" firstAttribute="leading" secondItem="Mf4-Fp-1oW" secondAttribute="leading" constant="15" id="hYK-RA-ser"/>
+                        <constraint firstItem="K29-QJ-JMe" firstAttribute="top" secondItem="Mf4-Fp-1oW" secondAttribute="top" id="p25-Jx-ehM"/>
+                        <constraint firstItem="cUY-TD-fyE" firstAttribute="leading" secondItem="K29-QJ-JMe" secondAttribute="leading" constant="3" id="w1F-cA-wUE"/>
+                        <constraint firstItem="OLC-RG-HUd" firstAttribute="top" secondItem="cUY-TD-fyE" secondAttribute="bottom" id="z23-r5-vZY"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Mf4-Fp-1oW" secondAttribute="trailing" id="0ga-Dv-d2k"/>
+                <constraint firstItem="Mf4-Fp-1oW" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="CIE-Hj-S5L"/>
+                <constraint firstItem="Mf4-Fp-1oW" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="vk2-09-W51"/>
+                <constraint firstItem="Mf4-Fp-1oW" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="xM4-nr-Q3Z"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="dateLabel" destination="OLC-RG-HUd" id="bBx-t8-Maq"/>
+                <outlet property="typeLabel" destination="p0I-uS-weA" id="hDb-JM-CWE"/>
+            </connections>
+            <point key="canvasLocation" x="24.5" y="53"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="myMsgBgDown" width="347" height="30"/>
+    </resources>
+</document>

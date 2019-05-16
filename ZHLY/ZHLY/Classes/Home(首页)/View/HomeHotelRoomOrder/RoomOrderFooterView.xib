@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="RoomOrderFooterView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="酒店入住须知" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s8M-Q4-5UK">
+                    <rect key="frame" x="15" y="10" width="350" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="lli-U2-9j0"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="胜多负少范德萨胜多负少范德萨胜多负少范德萨胜多负少范德萨胜多负少范德萨胜多负少范德萨胜多负少范德萨胜多负少范德萨胜多负少范德萨胜多负少范德萨胜多负少范德萨胜多负少范德萨胜多负少范德萨胜多负少范德萨" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8bQ-Ef-gGe">
+                    <rect key="frame" x="15" y="40" width="350" height="250"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="m0D-Mn-rv1"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="s8M-Q4-5UK" secondAttribute="trailing" constant="10" id="GSI-p5-sNj"/>
+                <constraint firstItem="8bQ-Ef-gGe" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="JdN-1g-5Js"/>
+                <constraint firstAttribute="bottom" secondItem="8bQ-Ef-gGe" secondAttribute="bottom" constant="10" id="YMh-51-Yws"/>
+                <constraint firstItem="8bQ-Ef-gGe" firstAttribute="top" secondItem="s8M-Q4-5UK" secondAttribute="bottom" constant="10" id="ZRg-KY-Sdr"/>
+                <constraint firstItem="s8M-Q4-5UK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="cSw-N9-EIs"/>
+                <constraint firstItem="s8M-Q4-5UK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="fut-OJ-faJ"/>
+                <constraint firstAttribute="trailing" secondItem="8bQ-Ef-gGe" secondAttribute="trailing" constant="10" id="zQF-iG-8J4"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="noticeContentLabel" destination="8bQ-Ef-gGe" id="Uyc-Jc-vx4"/>
+                <outlet property="noticeTitleLabel" destination="s8M-Q4-5UK" id="5nH-GQ-HPz"/>
+            </connections>
+            <point key="canvasLocation" x="26.5" y="52"/>
+        </view>
+    </objects>
+</document>

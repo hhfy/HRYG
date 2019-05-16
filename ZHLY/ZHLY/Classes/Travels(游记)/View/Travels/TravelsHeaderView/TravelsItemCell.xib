@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TravelsItemCell" id="gTV-IL-0wX" customClass="TravelsItemCell">
+            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="客服电话" translatesAutoresizingMaskIntoConstraints="NO" id="q54-vV-Gpd">
+                        <rect key="frame" x="32.5" y="15" width="36" height="36"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="36" id="BId-IK-eJd"/>
+                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="36" id="ryp-Dt-amW"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="游览攻略" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Zj-Ha-DCB">
+                        <rect key="frame" x="0.0" y="61" width="100" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="q54-vV-Gpd" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="36H-V9-Q6j"/>
+                <constraint firstItem="8Zj-Ha-DCB" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="BAI-mc-Oy0"/>
+                <constraint firstItem="q54-vV-Gpd" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="GI8-AZ-5R7"/>
+                <constraint firstAttribute="trailing" secondItem="8Zj-Ha-DCB" secondAttribute="trailing" id="PDi-S6-Gle"/>
+                <constraint firstItem="8Zj-Ha-DCB" firstAttribute="top" secondItem="q54-vV-Gpd" secondAttribute="bottom" constant="10" id="gAR-et-UEk"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
+            <connections>
+                <outlet property="iconView" destination="q54-vV-Gpd" id="exl-xy-EQD"/>
+                <outlet property="titleTextLabel" destination="8Zj-Ha-DCB" id="L3w-yF-q9h"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="客服电话" width="51" height="51"/>
+    </resources>
+</document>

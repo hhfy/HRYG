@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ProfileHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="170"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="93w-1v-TH3">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="170"/>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar_default" translatesAutoresizingMaskIntoConstraints="NO" id="6uR-A5-J16">
+                    <rect key="frame" x="15" y="90" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="DqL-Kq-gFK"/>
+                        <constraint firstAttribute="height" constant="50" id="qDc-uv-Ywx"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="路通" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t4Q-ID-8lY">
+                    <rect key="frame" x="75" y="105" width="37" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BNZ-Jy-Zpe">
+                    <rect key="frame" x="285" y="100" width="75" height="30"/>
+                    <state key="normal" title="个人信息 &gt;">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="profileIntoBtnTap" destination="iN0-l3-epB" eventType="touchUpInside" id="P9i-5u-d3M"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tv7-sh-Nd8">
+                    <rect key="frame" x="330" y="40" width="30" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="图"/>
+                    <connections>
+                        <action selector="settingBtnTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="GXB-4N-puQ"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="93w-1v-TH3" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="4OP-JE-pRd"/>
+                <constraint firstAttribute="trailing" secondItem="93w-1v-TH3" secondAttribute="trailing" id="KQ1-U9-qLr"/>
+                <constraint firstAttribute="trailing" secondItem="BNZ-Jy-Zpe" secondAttribute="trailing" constant="15" id="PBz-lB-K8Z"/>
+                <constraint firstItem="93w-1v-TH3" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="XhW-op-UKJ"/>
+                <constraint firstAttribute="trailing" secondItem="tv7-sh-Nd8" secondAttribute="trailing" constant="15" id="Ybl-xf-fte"/>
+                <constraint firstAttribute="bottom" secondItem="6uR-A5-J16" secondAttribute="bottom" constant="30" id="cjA-6a-bFD"/>
+                <constraint firstItem="6uR-A5-J16" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="frR-fe-UMZ"/>
+                <constraint firstItem="BNZ-Jy-Zpe" firstAttribute="centerY" secondItem="6uR-A5-J16" secondAttribute="centerY" id="gVP-2F-ueP"/>
+                <constraint firstItem="t4Q-ID-8lY" firstAttribute="leading" secondItem="6uR-A5-J16" secondAttribute="trailing" constant="10" id="gne-AZ-l3O"/>
+                <constraint firstItem="t4Q-ID-8lY" firstAttribute="centerY" secondItem="6uR-A5-J16" secondAttribute="centerY" id="j2U-Sd-Efv"/>
+                <constraint firstItem="93w-1v-TH3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="piE-oA-bHY"/>
+                <constraint firstItem="BNZ-Jy-Zpe" firstAttribute="top" secondItem="tv7-sh-Nd8" secondAttribute="bottom" constant="30" id="yeO-KP-IYc"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="avatarView" destination="6uR-A5-J16" id="kDl-qG-Ec5"/>
+                <outlet property="bgImageView" destination="93w-1v-TH3" id="GbK-k2-lTR"/>
+                <outlet property="profileInfoBtn" destination="BNZ-Jy-Zpe" id="miF-Cc-IDa"/>
+                <outlet property="settingBtn" destination="tv7-sh-Nd8" id="yNO-SW-4mm"/>
+                <outlet property="userNameLabel" destination="t4Q-ID-8lY" id="9rG-Rd-K2O"/>
+            </connections>
+            <point key="canvasLocation" x="-277" y="22"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="avatar_default" width="50" height="50"/>
+        <image name="bg" width="375" height="140"/>
+    </resources>
+</document>

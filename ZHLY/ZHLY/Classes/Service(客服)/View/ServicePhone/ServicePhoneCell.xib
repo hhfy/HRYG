@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ServicePhoneCell" id="KGk-i7-Jjw" customClass="ServicePhoneCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="49.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iah-4Y-wIT" userLabel="Line">
+                        <rect key="frame" x="0.0" y="49" width="320" height="0.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="3FZ-Ph-O17"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="飞马水城管理中心：" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZBu-v1-ByC">
+                        <rect key="frame" x="0.0" y="0.0" width="160" height="49"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jww-QG-Jts">
+                        <rect key="frame" x="160" y="0.0" width="160" height="49"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <state key="normal" title="15251625336">
+                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="callPhoneBtnTap:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="tCH-QP-zzi"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="iah-4Y-wIT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="49" id="2Ab-yu-fQc"/>
+                    <constraint firstAttribute="trailing" secondItem="iah-4Y-wIT" secondAttribute="trailing" id="A7I-6O-zTm"/>
+                    <constraint firstItem="iah-4Y-wIT" firstAttribute="top" secondItem="ZBu-v1-ByC" secondAttribute="bottom" id="Cxe-Ed-ZTq"/>
+                    <constraint firstItem="iah-4Y-wIT" firstAttribute="top" secondItem="Jww-QG-Jts" secondAttribute="bottom" id="G4L-LL-4mn"/>
+                    <constraint firstItem="iah-4Y-wIT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Jn2-ma-LSP"/>
+                    <constraint firstItem="Jww-QG-Jts" firstAttribute="leading" secondItem="ZBu-v1-ByC" secondAttribute="trailing" id="N42-zr-2jk"/>
+                    <constraint firstItem="Jww-QG-Jts" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Q4a-gM-XGw"/>
+                    <constraint firstAttribute="bottom" secondItem="iah-4Y-wIT" secondAttribute="bottom" id="V8N-70-Sk0"/>
+                    <constraint firstAttribute="trailing" secondItem="Jww-QG-Jts" secondAttribute="trailing" id="WAv-jk-WZl"/>
+                    <constraint firstItem="Jww-QG-Jts" firstAttribute="width" secondItem="ZBu-v1-ByC" secondAttribute="width" id="cqs-xe-frZ"/>
+                    <constraint firstItem="ZBu-v1-ByC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="fOa-cy-c5e"/>
+                    <constraint firstItem="ZBu-v1-ByC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="jUV-2u-aLO"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="moblieBtn" destination="Jww-QG-Jts" id="OwF-lx-5e0"/>
+                <outlet property="nameLabel" destination="ZBu-v1-ByC" id="ULu-EX-79J"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TravelsHotVenueHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="210"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="马文化博物馆" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vOd-PZ-hJS">
+                    <rect key="frame" x="15" y="82.5" width="345" height="21.5"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21.5" id="tCc-Ik-4JV"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LBV-uf-pEV">
+                    <rect key="frame" x="15" y="114" width="61" height="29"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="29" id="9q8-v9-fgm"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="42张图片"/>
+                    <connections>
+                        <action selector="photoCountBntTap" destination="iN0-l3-epB" eventType="touchUpInside" id="cwz-aa-rxR"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1120人游玩过" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zen-6W-9Sa">
+                    <rect key="frame" x="15" y="143" width="87" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="16" id="wWj-7f-h65"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="liV-W3-0Xb" userLabel="Line">
+                    <rect key="frame" x="15" y="169" width="345" height="1"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="nkH-CR-7qg"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="85t-bQ-hcR">
+                    <rect key="frame" x="187.5" y="170" width="172.5" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="6Us-3y-rA2"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="12篇游记"/>
+                    <connections>
+                        <action selector="notesTap" destination="iN0-l3-epB" eventType="touchUpInside" id="QRy-5l-lEa"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cv2-zE-qS4">
+                    <rect key="frame" x="15" y="170.5" width="172.5" height="39.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="5篇攻略"/>
+                    <connections>
+                        <action selector="tipsTap" destination="iN0-l3-epB" eventType="touchUpInside" id="BIS-nw-1vN"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Zen-6W-9Sa" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="8da-7t-Kb1"/>
+                <constraint firstAttribute="bottom" secondItem="Cv2-zE-qS4" secondAttribute="bottom" id="9fF-2i-AJj"/>
+                <constraint firstAttribute="bottom" secondItem="85t-bQ-hcR" secondAttribute="bottom" id="BLA-TJ-p1T"/>
+                <constraint firstItem="vOd-PZ-hJS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="Eok-Ig-OZW"/>
+                <constraint firstAttribute="trailing" secondItem="vOd-PZ-hJS" secondAttribute="trailing" constant="15" id="JKb-fo-rfn"/>
+                <constraint firstItem="85t-bQ-hcR" firstAttribute="top" secondItem="liV-W3-0Xb" secondAttribute="bottom" id="JfL-U6-fjR"/>
+                <constraint firstItem="LBV-uf-pEV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="SY5-Tl-dHs"/>
+                <constraint firstItem="LBV-uf-pEV" firstAttribute="top" secondItem="vOd-PZ-hJS" secondAttribute="bottom" constant="10" id="Tw4-fN-4ih"/>
+                <constraint firstItem="liV-W3-0Xb" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="UD7-co-f41"/>
+                <constraint firstItem="Cv2-zE-qS4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="bgV-dQ-nTb"/>
+                <constraint firstItem="liV-W3-0Xb" firstAttribute="top" secondItem="Zen-6W-9Sa" secondAttribute="bottom" constant="10" id="cPM-CL-wuH"/>
+                <constraint firstItem="85t-bQ-hcR" firstAttribute="width" secondItem="Cv2-zE-qS4" secondAttribute="width" id="cxc-2m-NZs"/>
+                <constraint firstItem="Cv2-zE-qS4" firstAttribute="top" secondItem="liV-W3-0Xb" secondAttribute="bottom" id="nmB-GT-F4t"/>
+                <constraint firstAttribute="trailing" secondItem="liV-W3-0Xb" secondAttribute="trailing" constant="15" id="rky-g1-SGo"/>
+                <constraint firstItem="85t-bQ-hcR" firstAttribute="leading" secondItem="Cv2-zE-qS4" secondAttribute="trailing" id="sgm-XO-JG3"/>
+                <constraint firstItem="Zen-6W-9Sa" firstAttribute="top" secondItem="LBV-uf-pEV" secondAttribute="bottom" id="xdM-Nn-uTw"/>
+                <constraint firstAttribute="trailing" secondItem="85t-bQ-hcR" secondAttribute="trailing" constant="15" id="yhs-EQ-sOo"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="imageCountBtn" destination="LBV-uf-pEV" id="Yic-ng-Wpw"/>
+                <outlet property="strategyCountBtn" destination="Cv2-zE-qS4" id="Pt4-hL-3i0"/>
+                <outlet property="titleTextLabel" destination="vOd-PZ-hJS" id="PKH-pi-Pan"/>
+                <outlet property="travelsCountBtn" destination="85t-bQ-hcR" id="7fz-5c-bO4"/>
+                <outlet property="visitorCountLabel" destination="Zen-6W-9Sa" id="bBY-op-uVR"/>
+            </connections>
+            <point key="canvasLocation" x="-237.5" y="-10"/>
+        </view>
+    </objects>
+</document>

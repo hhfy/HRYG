@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ProfileCouponCenterView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="315"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="中" translatesAutoresizingMaskIntoConstraints="NO" id="sjY-hq-msP">
+                    <rect key="frame" x="15" y="0.0" width="345" height="315"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="315" id="N1t-AR-beM"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="sjY-hq-msP" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="F0c-nI-jRn"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="sjY-hq-msP" secondAttribute="trailing" constant="15" id="Wha-ea-mMj"/>
+                <constraint firstItem="sjY-hq-msP" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="stE-j5-8bm"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="imgHeight" destination="N1t-AR-beM" id="rpw-ia-jEN"/>
+            </connections>
+            <point key="canvasLocation" x="25.5" y="-123.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="中" width="345" height="322"/>
+    </resources>
+</document>

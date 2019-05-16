@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta name="screen-orientation" content="portrait"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <title>在线选座</title>
+    <link rel="stylesheet" type="text/css" href="weui.css" />
+    <link rel="stylesheet" type="text/css" href="mapbox-gl.css" />
+    <link rel="stylesheet" type="text/css" href="jquery-weui.css" />
+    <link rel="stylesheet" type="text/css" href="common.css" />
+</head>
+<body>
+<div class="webLeft"></div>
+<div id="app" v-cloak="">
+    <div class="ticket-title">{{ detail.stadium_name }}</div>
+    <div class="ticket-sub ticket-time">{{ detail.ticket_show_stime }}</div>
+    <div class="item-box">
+        <div class="item-title">
+            <em class="line"></em>
+            <div class="ticket-status">
+                <em class="status sold"></em>可销售
+            </div>
+            <div class="ticket-status">
+                <em class="status remain"></em>已销售
+            </div>
+            <div class="ticket-status">
+                <em class="status lock"></em>已锁票
+            </div>
+        </div>
+        <div class="item-content no-padding">
+            <div id="map-container" :style="{height: height+'px'}"></div>
+        </div>
+    </div>
+
+    <div class="height-56"></div>
+    <div class="book-box has-three-item clearfix">
+        <div class="ticket-icon" :class="showTicket ? 'up' : 'down'"></div>
+        <div class="book-price" style="vertical-align: bottom" @click="site_list.length > 0 ? showTicket = !showTicket : showTicket = false">
+            <em style="color: rgb(102, 102, 102);margin: 0">丨</em><em>¥</em>{{ total_price.toFixed(2) }}<em style="margin-left: 2px;color: #666">({{site_list.length}})张</em>
+        </div>
+        <div class="shop-car-btn clearfix">
+            <a href="javascript:;" :class="ticket.length < 1 ? 'disabled' : ''" class="book-btn shop-car" @click="goToShopCar($event)">加入购物车</a>
+            <a href="javascript:;" :class="ticket.length < 1 ? 'disabled' : ''" class="book-btn" @click="goToPay($event)">立即购买</a>
+        </div>
+    </div>
+    <div class="weui-popup__container popup-bottom" :class="showTicket ? 'weui-popup__container--visible' : ''">
+        <div class="weui-popup__overlay"></div>
+        <div class="weui-popup__modal" style="max-height: 45%;bottom: 50px">
+            <div class="weui-cells">
+                <div class="weui-cell" v-for="(item, index) in site_list">
+                    <div class="weui-cell__hd">
+                        <!--<i class="weui-icon-success"></i>-->
+                    </div>
+                    <div class="weui-cell__bd">
+                        <p>{{ item.site_name }}</p>
+                    </div>
+                    <div class="weui-cell__ft">
+                        ¥{{ item.ticket_sale_price }}
+                        <i class="weui-icon-cancel" @click="removeTicket(item.site_basic_id, index)"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="webRight"></div>
+<script type="application/javascript" src="vue.js"></script>
+<script type="application/javascript" src="jquery_2_1_4.js"></script>
+<script type="application/javascript" src="jquery-weui.js"></script>
+<script type="application/javascript" src="mapbox-gl.js"></script>
+<script type="application/javascript" src="common.js"></script>
+<script>
+    /**
+     * 构建一个filter
+     */
+    if (!Array.prototype.filter) {
+        Array.prototype.filter = function(fun /* , thisArg*/) {
+            "use strict";
+            if (this === void 0 || this === null)
+                throw new TypeError();
+
+            var t = Object(this);
+            var len = t.length >>> 0;
+            if (typeof fun !== "function")
+                throw new TypeError();
+
+            var res = [];
+            var thisArg = arguments.length >= 2 ? arguments[1] : void 0;
+            for (var i = 0; i < len; i++) {
+                if (i in t) {
+                    var val = t[i];
+
+                    // NOTE: Technically this should Object.defineProperty at
+                    //       the next index, as push can be affected by
+                    //       properties on Object.prototype and Array.prototype.
+                    //       But that method's new, and collisions should be
+                    //       rare, so use the more-compatible alternative.
+                    if (fun.call(thisArg, val, i, t))
+                        res.push(val);
+                }
+            }
+            return res;
+        };
+    }
+
+    /**
+     * 构建一个findIndex
+     */
+    // https://tc39.github.io/ecma262/#sec-array.prototype.findIndex
+    if (!Array.prototype.findIndex) {
+        Object.defineProperty(Array.prototype, 'findIndex', {
+            value: function(predicate) {
+                // 1. Let O be ? ToObject(this value).
+                if (this == null) {
+                    throw new TypeError('"this" is null or not defined');
+                }
+
+                var o = Object(this);
+
+                // 2. Let len be ? ToLength(? Get(O, "length")).
+                var len = o.length >>> 0;
+
+                // 3. If IsCallable(predicate) is false, throw a TypeError exception.
+                if (typeof predicate !== 'function') {
+                    throw new TypeError('predicate must be a function');
+                }
+
+                // 4. If thisArg was supplied, let T be thisArg; else let T be undefined.
+                var thisArg = arguments[1];
+
+                // 5. Let k be 0.
+                var k = 0;
+
+                // 6. Repeat, while k < len
+                while (k < len) {
+                    // a. Let Pk be ! ToString(k).
+                    // b. Let kValue be ? Get(O, Pk).
+                    // c. Let testResult be ToBoolean(? Call(predicate, T, « kValue, k, O »)).
+                    // d. If testResult is true, return k.
+                    var kValue = o[k];
+                    if (predicate.call(thisArg, kValue, k, o)) {
+                        return k;
+                    }
+                    // e. Increase k by 1.
+                    k++;
+                }
+
+                // 7. Return -1.
+                return -1;
+            }
+        });
+    }
+
+    var vue = new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                showTicket: false,
+                webgl_support: webgl_support(),
+                geoJSON: '',
+                sites: [],
+                sites_ids: [],
+                status: {
+                    remain: [],
+                    sold: [],
+                    lock: []
+                },
+                site_ids: [],
+                site_list: [],
+                ticket: [],
+                total_price: 0,
+                setting: '',
+                detail: '',
+                height: $(document).height() - 174
+            }
+        },
+        mounted: function () {
+            /*if (this.webgl_support) {
+                this.init()
+            }*/
+        },
+        filters: common.filters,
+        methods: {
+            /**
+             * 请求场馆信息
+             * @param param.sess_id 用户ID
+             * @param param.ticket_id 门票ID
+             * @param param.channel_id 渠道ID
+             * @param param.API_URL 接口请求地址
+             */
+            getDetail: function ( param ) {
+                var self = this
+                if(typeof param !== 'object') return false
+                common.DataGet(param.API_URL, {
+                    'sign': param.sign,
+                    'biz_sess_id': param.biz_sess_id,
+                    'nonce_str': param.nonce_str,
+                    'channel_pot_id': param.channel_pot_id
+                }, function (data) {
+                    if(data.code === 200) {
+                        self.$set(self, 'geoJSON', data.data.stadium_geojson)
+                        self.$set(self, 'sites', data.data.ticket_site)
+                        self.$set(self, 'detail', data.data.stadium_info)
+                        if (self.webgl_support) {
+                            self.init()
+                        }
+                    }
+                })
+            },
+            /**
+             * 初始化地图
+             */
+            init: function () {
+                var self = this
+                var mapboxgl = window.mapboxgl;
+                mapboxgl.accessToken = 'pk.eyJ1IjoibWFvcmV5IiwiYSI6ImNqNWhrenIwcDFvbXUyd3I2bTJxYzZ4em8ifQ.KHZIehQuWW9AsMaGtATdwA'; // 设置MapBox访问令牌
+                var map = this.map = new mapboxgl.Map({
+                    container: 'map-container',
+                    style: {
+                        'version': 8,
+                        // 'glyphs': '//assets.piaoniu.com/mapfonts/{fontstack}/{range}.pbf',
+                        'glyphs': 'mapbox://fonts/mapbox/{fontstack}/{range}.pbf',
+                        'sources': {},
+                        'layers': [{
+                            'id': 'background',
+                            'type': 'background',
+                            'paint': {
+                                'background-color': 'rgba(0,0,0,0)'
+                            },
+                            'interactive': true
+                        }]
+                    },
+                    center: [121.43454551696777, 31.245296623630885],
+                    attributionControl: false,
+                    zoom: 15.2, // 设置当前显示级别
+                });
+                window.map = map;
+                map.setMaxBounds(map.getBounds())
+                this.reloadData()
+            },
+            /**
+             * 加座数据
+             */
+            reloadData: function () {
+                var self = this,
+                    map = self.map
+
+                map.on('load', function () {
+                    self.addOrUpdateSource()
+                    self.addLayers()
+                })
+                map.on('click', 'site-remain', function (e) {
+                    var feature = self.getFeature(e),
+                        selectSiteID = feature.properties.site_basic_id,
+                        info = self.getTicketInfo(selectSiteID)
+                    if(selectSiteID > 0) {
+                        if(self.getIdsIndex(selectSiteID) < 0) {
+                            if(self.site_ids.length > 5) {
+                                $.toast("对不起，您最多只可选择6个座位", "text");
+                            }else {
+                                self.site_ids.push(selectSiteID)
+                            }
+                        }else {
+                            self.site_ids.splice(self.getIdsIndex(selectSiteID),1)
+                        }
+                        map.setFilter('select-border', ['in', 'site_basic_id'].concat(self.site_ids))
+
+                        if(self.getSiteIndex(selectSiteID) < 0) {
+                            if(self.site_list.length < 7) {
+                                self.site_list.push(info)
+                            }
+                        }else {
+                            self.site_list.splice(self.getSiteIndex(selectSiteID),1)
+                        }
+                    }
+                })
+            },
+            /**
+             * 获取geoJSON中的指定feature值
+             * */
+            getFeature: function (e) {
+                var features = map.queryRenderedFeatures(e.point)
+                if (!features) {
+                    return
+                }
+                return features[0]
+            },
+            /**
+             * 获取当前id在id集合中的索引
+             */
+            getIdsIndex: function (id) {
+                return $.inArray(id, this.site_ids)
+            },
+            /**
+             * 获取当前id在座位集合中的索引
+             */
+            getSiteIndex: function (id) {
+                return this.site_list.findIndex(function (item) {
+                    return Number(item.site_basic_id) === Number(id)
+                })
+            },
+            /**
+             * 获取
+             * */
+            getTicketInfo: function (id) {
+                var self = this,
+                    info = ''
+                $.each(self.sites, function (i, item) {
+                    if(Number(item.site_basic_id) === Number(id)) {
+                        info = item
+                        return false
+                    }
+                })
+                return info
+            },
+            /**
+             * 删除已选座位商品
+             */
+            removeTicket: function (id, index) {
+                var self = this
+                self.site_ids.splice($.inArray(id, self.site_ids),1)
+                self.site_list.splice(index,1)
+                map.setFilter('select-border', ['in', 'site_basic_id'].concat(self.site_ids))
+            },
+            /**
+             * 获取全部geoJSON
+             */
+            fetchGeoJson: function () {
+                return this.geoJSON
+            },
+            /**
+             * 获取舞台geoJSON
+             */
+            stage: function () {
+                return {
+                    'type': 'FeatureCollection',
+                    'features': this.geoJSON.features.filter(function(f) {
+                        return f.properties.type === 'stage'
+                    })
+                }
+            },
+            /**
+             * 获取区域geoJSON
+             */
+            district: function () {
+                return {
+                    'type': 'FeatureCollection',
+                    'features': this.geoJSON.features.filter(function(f) {
+                        return f.properties.type === 'district'
+                    })
+                }
+            },
+            /**
+             * 获取座位geoJSON
+             */
+            site: function () {
+                return {
+                    'type': 'FeatureCollection',
+                    'features': this.geoJSON.features.filter(function(f) {
+                        return f.properties.type === 'site'
+                    })
+                }
+            },
+            /**
+             * 添加或更新geojson数据源
+             */
+            addOrUpdateSource: function () {
+                var map = this.map
+                var idDataMap = {
+                    'district': this.district(),
+                    'site': this.site(),
+                    'texts': this.fetchGeoJson(),
+                    'stage': this.stage()
+                }
+                Object.keys(idDataMap).forEach(function(id) {
+                    var source = map.getSource(id)
+                    var sourceData = idDataMap[id]
+                    if (!source) {
+                        source = map.addSource(id, {
+                            type: 'geojson',
+                            data: sourceData
+                        })
+                    } else {
+                        source.setData(sourceData)
+                    }
+                })
+            },
+            /**
+             * 给地图添加图层
+             */
+            addLayers: function () {
+                var map = this.map,
+                    self = this
+                var textPaint = {
+                    'text-color': '#333',
+                    'text-halo-color': '#fff',
+                    'text-halo-width': 0.5
+                }
+                var textLayout = {
+                    'text-size': {
+                        'stops': [
+                            [16, 8],
+                            [20, 22]
+                        ]
+                    },
+                    // 'text-font': ['SourceHanSansSC-Regular'],
+                    'text-field': '{name}'
+                }
+                /**
+                 * 舞台与区域名称
+                 */
+                map.addLayer({
+                    'id': 'district_stage_texts',
+                    'type': 'symbol',
+                    'source': 'texts',
+                    'minzoom': 15,
+                    'maxzoom': 18.5,
+                    'paint': textPaint,
+                    'layout': textLayout,
+                    'filter': ["!=", 'type', 'site']
+                })
+                // 创建文字图层
+                /*map.addLayer({
+                    'id': 'texts',
+                    'type': 'symbol',
+                    'source': 'texts',
+                    'minzoom': 18.6,
+                    'maxzoom': 22,
+                    'paint': textPaint,
+                    'layout': textLayout,
+                    'filter': ["all", ['==', 'type', 'site'], ['==', 'site_status', '1']]
+                })*/
+                // 创建区域边框图层
+                map.addLayer({
+                    'id': 'district',
+                    'type': 'line',
+                    'source': 'district',
+                    'paint': {
+                        'line-color': "#9ed5d5"
+                    }
+                })
+                // 创建舞台填充图层
+                map.addLayer({
+                    'id': 'stage',
+                    'type': 'fill',
+                    'source': 'stage',
+                    'paint': {
+                        'fill-color': '#f4f8fd'
+                    }
+                })
+                // 创建舞台边框图层
+                map.addLayer({
+                    'id': 'stage-line',
+                    'type': 'line',
+                    'source': 'stage',
+                    'paint': {
+                        'line-color': '#aecdeb'
+                    }
+                })
+                // 创建座位填充图层
+                map.addLayer({
+                    'id': 'site',
+                    'type': 'fill',
+                    'source': 'site',
+                    'minzoom': 15.6,
+                    'paint': {
+                        'fill-color': '#e8e8e8'
+                    }
+                })
+                // 创建待销售填充图层
+                map.addLayer({
+                    'id': 'site-remain',
+                    'type': 'fill',
+                    'source': 'site',
+                    'minzoom': 15.6,
+                    'paint': {
+                        'fill-color': '#91d4f7'
+                    },
+                    "filter": ['in', 'site_basic_id'].concat(self.status.remain)
+                })
+                // 创建已销售填充图层
+                map.addLayer({
+                    'id': 'site-sold',
+                    'type': 'fill',
+                    'source': 'site',
+                    'minzoom': 15.6,
+                    'paint': {
+                        'fill-color': '#e8e8e8'
+                    },
+                    "filter": ['in', 'site_basic_id'].concat(self.status.sold)
+                })
+                // 创建已锁定填充图层
+                map.addLayer({
+                    'id': 'site-lock',
+                    'type': 'fill',
+                    'source': 'site',
+                    'minzoom': 15.6,
+                    'paint': {
+                        'fill-color': '#DAF1F7'
+                    },
+                    "filter": ['in', 'site_basic_id'].concat(self.status.lock)
+                })
+                //  创建选中
+                map.addLayer({
+                    'id': 'select-border',
+                    'type': 'line',
+                    'minzoom': 15.6,
+                    'maxzoom': 22,
+                    'source': 'site',
+                    'paint': {
+                        'line-color': '#65BED3',
+                        'line-width': 2
+                    },
+                    "filter": ['in', 'site_basic_id'].concat(self.site_ids)
+                })
+            },
+            /**
+             * 确认选座
+             * @param event
+             * @returns {boolean}
+             */
+            goToPay: function (event) {
+                var self = this
+                if($(event.target).hasClass('disabled')) return false
+                if(common.checkBrower().android) {
+                    var param = {
+                        ticket: self.ticket
+                    }
+                    android.siteBuySoon(JSON.stringify(param))
+                    return false
+                }
+                if(common.checkBrower().ios) {
+                    window.webkit.messageHandlers.ios.postMessage({
+                        ticket: self.ticket
+                    })
+                    return false
+                }
+            },
+            /**
+             * 加入购物车
+             */
+            goToShopCar: function (event) {
+                var self = this
+                if($(event.target).hasClass('disabled')) return false
+                if(common.checkBrower().android) {
+                    var param = {
+                        ticket: self.ticket
+                    }
+                    android.siteInCar(JSON.stringify(param))
+                    return false
+                }
+                if(common.checkBrower().ios) {
+                    window.webkit.messageHandlers.ios.postMessage({
+                        ticket: self.ticket,
+                        type: 'shopCar'
+                    })
+                    return false
+                }
+            }
+        },
+        watch: {
+            /**
+             * 检查setting是否传值
+             * @param val
+             */
+            setting: function (val) {
+                var self = this
+                if(val) {
+                    if(typeof val === 'object') {
+                        self.getDetail(val)
+                    }
+                }
+            },
+            site_list: function (val) {
+                var self = this,
+                    total = 0
+                self.ticket = []
+                if(val.length < 1) {
+                    self.showTicket = false
+                    self.ticket = []
+                }else {
+                    $.each(val, function (i, item) {
+                        self.ticket.push({
+                            biz_ticket_id: item.biz_ticket_id,
+                            site_name: item.site_name,
+                            ticket_num: 1
+                        })
+                        total += Number(item.ticket_sale_price)
+                    })
+                }
+                self.total_price = total
+            },
+            sites: function (val) {
+                var self = this
+                if(val.length > 0) {
+                    $.each(val, function (i, item) {
+                        if(item.site_basic_id > 0) {
+                            self.sites_ids.push(item.site_basic_id)
+                        }
+                        // 待销售
+                        if(Number(item.ticket_sold_num) === 0
+                            && Number(item.ticket_remain_num) === 1
+                            && Number(item.ticket_lock_num) === 0){
+                            self.status.remain.push(item.site_basic_id.toString())
+                        }
+                        // 已销售
+                        if(Number(item.ticket_sold_num) === 1
+                            && Number(item.ticket_remain_num) === 0
+                            && Number(item.ticket_lock_num) === 0) {
+                            self.status.sold.push(item.site_basic_id.toString())
+                        }
+                        // 已锁定
+                        if(Number(item.ticket_sold_num) === 0
+                            && Number(item.ticket_remain_num) === 0
+                            && Number(item.ticket_lock_num) === 1) {
+                            self.status.lock.push(item.site_basic_id.toString())
+                        }
+                    })
+                }
+            }
+        }
+    })
+    /**
+     * http://101.132.47.4:8090/ticket/site?sign=D41D8CD98F00B204E9800998ECF8427E&biz_sess_id=65&nonce_str=984943658&channel_pot_id=1
+     */
+
+    /*getSetting({
+        "sign" : "D41D8CD98F00B204E9800998ECF8427E",
+        "biz_sess_id" : "65",
+        "nonce_str" : "984943658",
+        "API_URL" : "http://101.132.47.4:8090/ticket/site",
+        "channel_pot_id" : "2"
+    })*/
+    function getSetting(name) {
+        vue.$set(vue, 'setting', name)
+    }
+
+    function webgl_support() {
+        try {
+            var canvas = document.createElement('canvas')
+            return !!window.WebGLRenderingContext && (
+                canvas.getContext('webgl') || canvas.getContext('experimental-webgl'))
+        } catch (e) {
+            return false;
+        }
+    }
+</script>
+</body>
+</html>

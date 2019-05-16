@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="HomeShopBaseSectionHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MQD-4d-Wxb" userLabel="Content View">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="门票" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Isg-cb-xfk">
+                            <rect key="frame" x="45" y="0.0" width="31" height="44.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W58-LW-2Bp">
+                            <rect key="frame" x="0.0" y="44.5" width="375" height="0.5"/>
+                            <color key="backgroundColor" red="0.8901960784313725" green="0.8901960784313725" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="0.5" id="zP5-di-WfX"/>
+                            </constraints>
+                        </view>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="门票" translatesAutoresizingMaskIntoConstraints="NO" id="0oX-cl-fEj">
+                            <rect key="frame" x="20" y="12.5" width="20" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="20" id="h4h-en-I4u"/>
+                                <constraint firstAttribute="height" constant="20" id="voR-bh-yYj"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="W58-LW-2Bp" firstAttribute="leading" secondItem="MQD-4d-Wxb" secondAttribute="leading" id="5Uf-hE-vZp"/>
+                        <constraint firstItem="Isg-cb-xfk" firstAttribute="leading" secondItem="0oX-cl-fEj" secondAttribute="trailing" constant="5" id="EOH-xV-6CP"/>
+                        <constraint firstAttribute="trailing" secondItem="W58-LW-2Bp" secondAttribute="trailing" id="F4g-8p-gBk"/>
+                        <constraint firstAttribute="bottom" secondItem="W58-LW-2Bp" secondAttribute="bottom" id="Y0b-r7-Ga0"/>
+                        <constraint firstItem="Isg-cb-xfk" firstAttribute="leading" secondItem="MQD-4d-Wxb" secondAttribute="leading" constant="45" id="a8u-eS-9uq"/>
+                        <constraint firstAttribute="height" constant="45" id="ayk-72-kr6"/>
+                        <constraint firstItem="Isg-cb-xfk" firstAttribute="centerY" secondItem="0oX-cl-fEj" secondAttribute="centerY" id="bF1-t9-KoT"/>
+                        <constraint firstItem="W58-LW-2Bp" firstAttribute="top" secondItem="Isg-cb-xfk" secondAttribute="bottom" id="dxs-em-0Wo"/>
+                        <constraint firstItem="Isg-cb-xfk" firstAttribute="top" secondItem="MQD-4d-Wxb" secondAttribute="top" id="enk-ja-lci"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="MQD-4d-Wxb" secondAttribute="trailing" id="d6E-5Y-YTP"/>
+                <constraint firstItem="MQD-4d-Wxb" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="lfX-sY-xG3"/>
+                <constraint firstItem="MQD-4d-Wxb" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="sBM-7A-kcn"/>
+                <constraint firstItem="MQD-4d-Wxb" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="tAW-nr-ZHF"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="24.5" y="51.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="门票" width="20" height="20"/>
+    </resources>
+</document>

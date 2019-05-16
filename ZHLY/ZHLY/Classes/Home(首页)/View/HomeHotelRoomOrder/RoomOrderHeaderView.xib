@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="RoomOrderHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="170"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O6v-tu-ZLY">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="170"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GS4-C0-ut2" customClass="QuiteButton">
+                            <rect key="frame" x="0.0" y="25" width="50" height="35"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="35" id="De7-vn-gVd"/>
+                                <constraint firstAttribute="width" constant="50" id="qFp-Gq-Lzt"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal" title="&lt;">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="quiteBtnClick" destination="iN0-l3-epB" eventType="touchUpInside" id="JZV-79-4MC"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="国际饭店" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z8d-OM-rTQ">
+                            <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="Ojd-Qe-gDb"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gGM-zx-yG9">
+                            <rect key="frame" x="15" y="64" width="345" height="96"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="入住时间 12月26日 - 12月27日 | 共一晚" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UtS-nV-XEz">
+                                    <rect key="frame" x="20" y="40" width="315" height="15"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="15" id="jVd-hy-7AP"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="标准间 | 不含早" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qOX-4v-wHZ">
+                                    <rect key="frame" x="22" y="65" width="313" height="15"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="15" id="5S2-Vt-WmV"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="豪华标准间" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TZR-f6-j4R">
+                                    <rect key="frame" x="22" y="10" width="313" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="20" id="aHe-0a-rSY"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="TZR-f6-j4R" secondAttribute="trailing" constant="10" id="LKI-mJ-eKU"/>
+                                <constraint firstItem="TZR-f6-j4R" firstAttribute="leading" secondItem="gGM-zx-yG9" secondAttribute="leading" constant="22" id="MHo-vQ-p6Y"/>
+                                <constraint firstAttribute="trailing" secondItem="qOX-4v-wHZ" secondAttribute="trailing" constant="10" id="QKc-8Q-LMr"/>
+                                <constraint firstAttribute="trailing" secondItem="UtS-nV-XEz" secondAttribute="trailing" constant="10" id="Qnt-hk-lN5"/>
+                                <constraint firstItem="TZR-f6-j4R" firstAttribute="top" secondItem="gGM-zx-yG9" secondAttribute="top" constant="10" id="RoZ-jx-PQh"/>
+                                <constraint firstItem="qOX-4v-wHZ" firstAttribute="leading" secondItem="gGM-zx-yG9" secondAttribute="leading" constant="22" id="U62-yk-Fu8"/>
+                                <constraint firstItem="qOX-4v-wHZ" firstAttribute="top" secondItem="UtS-nV-XEz" secondAttribute="bottom" constant="10" id="VnY-NA-di8"/>
+                                <constraint firstItem="UtS-nV-XEz" firstAttribute="top" secondItem="TZR-f6-j4R" secondAttribute="bottom" constant="10" id="xZb-vY-h2r"/>
+                                <constraint firstItem="UtS-nV-XEz" firstAttribute="leading" secondItem="gGM-zx-yG9" secondAttribute="leading" constant="20" id="z9z-gU-PnJ"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.89411764709999997" green="0.65490196079999996" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="z8d-OM-rTQ" firstAttribute="top" secondItem="O6v-tu-ZLY" secondAttribute="top" constant="20" id="GQc-Jm-34O"/>
+                        <constraint firstAttribute="trailing" secondItem="z8d-OM-rTQ" secondAttribute="trailing" id="H4L-fz-2fA"/>
+                        <constraint firstItem="GS4-C0-ut2" firstAttribute="centerY" secondItem="z8d-OM-rTQ" secondAttribute="centerY" id="HGM-Y0-oNo"/>
+                        <constraint firstItem="gGM-zx-yG9" firstAttribute="top" secondItem="z8d-OM-rTQ" secondAttribute="bottom" id="NH0-lQ-pon"/>
+                        <constraint firstItem="z8d-OM-rTQ" firstAttribute="leading" secondItem="O6v-tu-ZLY" secondAttribute="leading" id="OUH-QH-29f"/>
+                        <constraint firstItem="GS4-C0-ut2" firstAttribute="leading" secondItem="O6v-tu-ZLY" secondAttribute="leading" id="Rc0-Rh-hhR"/>
+                        <constraint firstItem="gGM-zx-yG9" firstAttribute="leading" secondItem="O6v-tu-ZLY" secondAttribute="leading" constant="15" id="RkS-iE-5oJ"/>
+                        <constraint firstAttribute="trailing" secondItem="gGM-zx-yG9" secondAttribute="trailing" constant="15" id="SzF-pn-mIB"/>
+                        <constraint firstAttribute="bottom" secondItem="gGM-zx-yG9" secondAttribute="bottom" constant="10" id="aE5-gC-ZX3"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="O6v-tu-ZLY" secondAttribute="bottom" id="1fh-1O-BEf"/>
+                <constraint firstAttribute="trailing" secondItem="O6v-tu-ZLY" secondAttribute="trailing" id="4L4-L3-e1B"/>
+                <constraint firstItem="O6v-tu-ZLY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Uuo-4h-Fx9"/>
+                <constraint firstItem="O6v-tu-ZLY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="yup-9k-T8i"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="contentView" destination="O6v-tu-ZLY" id="dUF-Fb-LV0"/>
+                <outlet property="contianerView" destination="gGM-zx-yG9" id="N7J-Pl-riD"/>
+                <outlet property="hotelNameLabel" destination="z8d-OM-rTQ" id="LGC-PB-L5w"/>
+                <outlet property="quiteBtn" destination="GS4-C0-ut2" id="IN2-Ld-gH4"/>
+                <outlet property="roomClassLabel" destination="TZR-f6-j4R" id="mlK-em-dcJ"/>
+                <outlet property="roomInfoLabel" destination="UtS-nV-XEz" id="0Tq-B2-Orf"/>
+                <outlet property="roomOtherInfoLabel" destination="qOX-4v-wHZ" id="HLD-JM-EwD"/>
+                <outlet property="topHeight" destination="GQc-Jm-34O" id="4xJ-Ix-8M2"/>
+            </connections>
+            <point key="canvasLocation" x="-256.5" y="-120"/>
+        </view>
+    </objects>
+</document>
